@@ -21,7 +21,7 @@ for first in inverse_alphabet:
 	for second in inverse_alphabet:
 		for third in inverse_alphabet:
 			word = first + second + third
-			inverse_words.append(word)
+			inverse_words.append(word[::-1])
 
 # Output all of the words to a file
 with codecs.open('build/result.txt', encoding = 'utf-8', mode = 'w') as result:
