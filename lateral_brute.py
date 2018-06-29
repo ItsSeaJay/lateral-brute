@@ -1,14 +1,13 @@
-regular_alphabet = [
-	letter.encode('UTF8') for letter in open('res/regular_alphabet.txt').read()
-]
-inverse_alphabet = [
-	letter.encode('UTF8') for letter in open('res/inverse_alphabet.txt').readlines()
-]
+from __future__ import print_function  # Only needed for Python 2
+import codecs # Character encoding
+
+regular_alphabet = codecs.open('res/regular_alphabet.txt', encoding = 'utf-8').read()
+regular_alphabet = regular_alphabet.strip(' ').split()
+inverse_alphabet = codecs.open('res/inverse_alphabet.txt', encoding = 'utf-8').read()
+inverse_alphabet = inverse_alphabet.strip(' ').split()
+# Create lists for all of the resulting words
 regular_words = []
 inverse_words = []
-
-print regular_alphabet
-print inverse_alphabet
 
 # Generate every possible word with three letters with both regular and
 # upside-down characters
@@ -23,3 +22,10 @@ for first in inverse_alphabet:
 		for third in inverse_alphabet:
 			word = first + second + third
 			inverse_words.append(word)
+
+# Output all of the words to a file
+with codecs.open('build/result.txt', encoding = 'utf-8', mode = 'w') as result:
+	for regular_word in regular_words:
+		for inverse_word in inverse_words:
+			comparison = regular_word + ' ' + inverse_word
+			print(comparison, file = result)
