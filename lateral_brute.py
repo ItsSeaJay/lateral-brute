@@ -25,7 +25,6 @@ for first in inverse_alphabet:
 
 # Output all of the words to a file
 with codecs.open('build/result.txt', encoding = 'utf-8', mode = 'w') as result:
-	for regular_word in regular_words:
-		for inverse_word in inverse_words:
-			comparison = regular_word + ' ' + inverse_word
-			print(comparison, file = result)
+	for word in range(0, len(regular_words)):
+		comparision = regular_words[word] + ' ' + inverse_words[word]
+		print(comparision, file = result)
